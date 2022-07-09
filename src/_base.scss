@@ -22,3 +22,21 @@ body {
     font-family: 'Roboto', sans-serif;
     letter-spacing: 0.1px;
 }
+
+@mixin line-clamp($numOfLines) {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: $numOfLines;
+    -webkit-box-orient: vertical;
+}
+
+
+
+body {
+
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        width: 0px;
+    }
+}
