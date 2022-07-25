@@ -10,6 +10,10 @@ import { useNavigate } from 'react-router-dom'
 import { Route, Routes, Navigate } from 'react-router-dom'
 
 import './_app.scss'
+import WatchScreen from './screens/watchScreen/WatchScreen'
+import SearchScreen from './screens/searchScreen/SearchScreen'
+import SubscriptionScreen from './screens/subscriptionScreen/SubscriptionScreen'
+import ChannelScreen from './screens/channelScreen/ChannelScreen'
 
 const Layout = ({ children }) => {
     const [sidebar, toggleSidebar] = useState(false);
@@ -68,9 +72,30 @@ const App = () => {
             }>
             </Route>
 
-            <Route path='/search' element={
+            <Route path='/watch/:id' element={
                 <Layout>
-                    <h1>Search Results</h1>
+                    <WatchScreen />
+                </Layout>
+            }>
+            </Route>
+
+            <Route path='/search/:query' element={
+                <Layout>
+                    <SearchScreen />
+                </Layout>
+            }>
+            </Route>
+
+            <Route path='/feed/subscriptions' element={
+                <Layout>
+                    <SubscriptionScreen />
+                </Layout>
+            }>
+            </Route>
+
+            <Route path='/channel/:channelId' element={
+                <Layout>
+                    <ChannelScreen />
                 </Layout>
             }>
             </Route>
