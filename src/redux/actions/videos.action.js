@@ -234,7 +234,6 @@ export const getVideosByChannel = (id) => async (dispatch) => {
             },
         })
         
-        console.log(data)
         dispatch({
             type: CHANNEL_VIDEOS_SUCCESS,
             payload: data.items,

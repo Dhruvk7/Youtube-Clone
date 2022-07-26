@@ -50,8 +50,6 @@ export const checkSubscriptionStatus = (id) => async (dispatch, getState) => {
             payload: data.items.length !== 0,
         })
 
-        console.log('Data is : ', data)
-
     } catch (error) {
 
         console.log(error.response.data)

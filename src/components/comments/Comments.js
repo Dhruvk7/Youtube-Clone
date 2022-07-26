@@ -1,11 +1,10 @@
 import './_comments.scss'
-import React from 'react'
+import React, { useRef } from 'react'
 import Comment from '../../comment/Comment'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addComment, getCommentsOfVideoById } from '../../redux/actions/comments.action'
 import { useState } from 'react'
-import numeral from 'numeral'
 
 const Comments = ({ videoId, totalComments }) => {
 
@@ -17,7 +16,12 @@ const Comments = ({ videoId, totalComments }) => {
 
     const comments = useSelector(state => state.commentList.comments)
 
-    const _comments = comments?.map(comment => comment.snippet.topLevelComment.snippet)
+    const { photoURL } = useSelector(state => state.auth?.user);
+
+    const imgRef = useRef();
+    const onImageError = () => imgRef.current.src = 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png'
+
+    const _comments = comments?.map(comment => comment?.snippet?.topLevelComment?.snippet)
 
     const [text, setText] = useState('');
 
@@ -31,6 +35,7 @@ const Comments = ({ videoId, totalComments }) => {
 
         setText('');
     }
+
     return (
 
         <div className="comments">
@@ -38,12 +43,12 @@ const Comments = ({ videoId, totalComments }) => {
                 {/* {numeral(totalComments).format('0.a')}  */}
                 {totalComments} Comments
             </p>
-            
+
             <div className="comments__form d-flex w-100 my-2">
                 <img
-                    src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png"
+                    src={photoURL}
                     alt="avatar"
-                    className='rounded-circle me-3' />
+                    className='rounded-circle me-3' ref={imgRef} onError={onImageError} />
 
                 <form onSubmit={handleComment} className="d-flex flex-grow-1">
                     <input type="text"

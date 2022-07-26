@@ -11,8 +11,6 @@ import { useNavigate } from "react-router-dom";
 
 const Video = ({ video, channelScreen }) => {
 
-  console.log(video)
-
   const {
     id,
     snippet: {

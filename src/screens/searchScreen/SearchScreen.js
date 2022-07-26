@@ -11,8 +11,6 @@ const SearchScreen = () => {
 
     const { query } = useParams();
 
-    console.log(query)
-
     const dispatch = useDispatch();
 
     useEffect(() => {
